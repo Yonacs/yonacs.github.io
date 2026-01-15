@@ -1,1 +1,216 @@
+:root{
+  --ivory:#F7F6F2;          /* ton ivoire */
+  --navy:#0B1F3B;           /* ton bleu marine */
+  --navy-2:#102A43;         /* variante douce */
+  --ink:#111318;
+
+  /* Glass */
+  --glass-top: rgba(255,255,255,.28);
+  --glass-mid: rgba(255,255,255,.18);
+  --glass-bot: rgba(255,255,255,.12);
+  --glass-border: rgba(255,255,255,.42);
+
+  --radius: 22px;
+  --shadow-soft: 0 18px 48px rgba(0,0,0,.18);
+  --shadow-pill: 0 10px 22px rgba(0,0,0,.22);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--ivory);
+}
+
+/* === FOND “ivoire premium” + glow navy très discret === */
+.bg{
+  position:fixed; inset:0; z-index:-2; overflow:hidden;
+  background:
+    radial-gradient(900px 420px at 15% 15%, rgba(11,31,59,.10), transparent 62%),
+    radial-gradient(900px 420px at 85% 70%, rgba(11,31,59,.08), transparent 62%),
+    var(--ivory);
+}
+
+/* Grain papier très léger (comme ta photo) */
+.bg::after{
+  content:"";
+  position:absolute; inset:-35%;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+  opacity:.10;
+  mix-blend-mode:multiply;
+  transform: rotate(2deg);
+}
+
+/* Layout */
+.container{
+  width:min(980px, 92vw);
+  margin: 46px auto 34px;
+  display:flex;
+  flex-direction:column;
+  gap: 18px;
+}
+
+/* === GLASSMORPHISM “soft finance” === */
+.glass{
+  border-radius: var(--radius);
+  background: linear-gradient(
+    180deg,
+    var(--glass-top),
+    var(--glass-mid) 55%,
+    var(--glass-bot)
+  );
+  border: 1px solid var(--glass-border);
+
+  /* highlight interne + ombre douce */
+  box-shadow:
+    var(--shadow-soft),
+    inset 0 1px 0 rgba(255,255,255,.55),
+    inset 0 -1px 0 rgba(255,255,255,.18);
+
+  /* blur (pas trop fort, comme ta capture) */
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+}
+
+/* HERO */
+.hero{ padding: 22px; }
+.hero-top{
+  display:flex;
+  align-items:center;
+  gap: 14px;
+}
+
+/* Titre style “banque” (serif) */
+h1{
+  margin:0;
+  font-family: Fraunces, ui-serif, Georgia, serif;
+  font-size: 34px;
+  letter-spacing: -0.2px;
+  color: rgba(11,31,59,.92);
+}
+.subtitle{
+  margin:6px 0 0;
+  font-weight:500;
+  color: rgba(11,31,59,.70);
+}
+.meta{
+  margin:6px 0 0;
+  color: rgba(17,19,24,.55);
+}
+
+/* Avatar rond “capsule” */
+.avatar-wrap{
+  width:74px; height:74px;
+  border-radius:999px;
+  padding: 3px;
+  background: linear-gradient(180deg, rgba(255,255,255,.38), rgba(255,255,255,.18));
+  border: 1px solid rgba(255,255,255,.55);
+  box-shadow: 0 10px 26px rgba(0,0,0,.14);
+  flex:0 0 auto;
+}
+.avatar{
+  width:100%; height:100%;
+  border-radius:999px;
+  object-fit: cover;
+  display:block;
+}
+
+/* CTA bloc glass (comme la “barre” sur ta capture) */
+.cta-bar{
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 18px;
+}
+.cta{
+  display:flex;
+  gap: 12px;
+  flex-wrap:wrap;
+}
+
+/* Boutons navy “pillow” */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap: 10px;
+  padding: 11px 16px;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 13.5px;
+  text-decoration:none;
+  color: rgba(255,255,255,.94);
+  background: linear-gradient(180deg, rgba(11,31,59,.92), rgba(11,31,59,.82));
+  border: 1px solid rgba(255,255,255,.10);
+
+  box-shadow:
+    var(--shadow-pill),
+    inset 0 1px 0 rgba(255,255,255,.16),
+    inset 0 -1px 0 rgba(0,0,0,.20);
+}
+.btn:active{
+  transform: translateY(1px);
+  box-shadow:
+    0 6px 14px rgba(0,0,0,.22),
+    inset 0 1px 0 rgba(255,255,255,.12),
+    inset 0 -1px 0 rgba(0,0,0,.22);
+}
+
+/* mini icône “fake” si tu veux (optionnel) */
+.icon{
+  width:14px; height:14px; border-radius:4px;
+  background: rgba(255,255,255,.28);
+}
+
+/* Headings sections (serif) */
+.section{ padding: 20px 22px; }
+.section h2{
+  margin:0 0 14px;
+  font-family: Fraunces, ui-serif, Georgia, serif;
+  font-size: 22px;
+  color: rgba(11,31,59,.86);
+}
+
+/* Logos sur petite barre glass */
+.logos-bar{
+  padding: 12px;
+  border-radius: 18px;
+}
+.logos{
+  display:flex;
+  gap: 18px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.logos img {
+  height: 24px;
+  opacity: .95;
+}
+
+
+/* Mobile */
+@media (max-width:520px){
+  h1{font-size:28px}
+  .avatar-wrap{width:66px;height:66px}
+}
+
+/* === CENTRAGE LOGOS === */
+.logos-bar {
+  display: flex;
+  justify-content: center;
+}
+
+.logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  margin: 0 auto;
+}
+
+.logos img {
+  max-height: 26px;
+  max-width: 120px;
+  object-fit: contain;
+}
 
