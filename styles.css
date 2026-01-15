@@ -214,3 +214,30 @@ h1{
   object-fit: contain;
 }
 
+/* === LOGOS: répartition égale responsive === */
+.logos-bar{
+  display: flex;
+  justify-content: center;
+}
+
+.logos{
+  /* On passe en grid pour distribuer automatiquement */
+  display: grid;
+  width: 100%;
+  max-width: 860px;           /* garde une largeur premium sur desktop */
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 18px;
+  align-items: center;
+  justify-items: center;
+  padding: 6px 10px;
+}
+
+/* Chaque logo prend sa “case” et se centre */
+.logos img{
+  width: 100%;
+  max-width: 160px;          /* limite la taille par case */
+  max-height: 34px;
+  object-fit: contain;
+  display: block;
+}
+
